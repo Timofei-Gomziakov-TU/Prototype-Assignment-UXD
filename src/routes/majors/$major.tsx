@@ -6,11 +6,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import {
-  createFileRoute,
-  useNavigate,
-  useRouter,
-} from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import {
   ArrowLeft,
   GraduationCap,
@@ -74,7 +70,7 @@ const skills = [
 ];
 
 function RouteComponent() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="max-w-7xl mx-auto px-6 py-8">
       {/* Back Button */}
