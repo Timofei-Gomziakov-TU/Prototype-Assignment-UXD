@@ -16,6 +16,7 @@ import {
   MessageCircleMore,
   User,
   Laptop,
+  AtSign,
 } from "lucide-react";
 
 export const Route = createFileRoute("/majors/computer-science")({
@@ -70,6 +71,8 @@ const skills = [
   "Debugging",
   "Version Control",
 ];
+
+const jobs = ["LinkedIn", "HandShake", "HackerRank"];
 
 function RouteComponent() {
   const navigate = useNavigate();
@@ -165,7 +168,15 @@ function RouteComponent() {
           <Target className="size-6 text-primary" />
           <h2 className="font-bold">Skills You'll Learn</h2>
         </div>
-        <p className="">{skills.map((skill) => skill + ", ")}</p>
+        <p className="">{skills.map((skill) => skill).join(", ")}</p>
+      </div>
+
+      <div className="mb-12">
+        <div className="flex items-center gap-2 mb-6">
+          <AtSign className="size-6 text-primary" />
+          <h2 className="font-bold">Where To Look For a Job</h2>
+        </div>
+        <p className="">{jobs.map((job) => job).join(", ")}</p>
       </div>
 
       <div>
