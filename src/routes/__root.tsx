@@ -17,18 +17,15 @@ const RootLayout = () => {
   return (
     <>
       <nav className="w-full border-b border-border bg-background px-6 py-4">
-        <div className="flex items-center justify-between gap-6">
-          <div className="relative flex items-center">
+        <div className="flex items-center justify-between gap-6 overflow-auto">
+          <div className="relative flex items-center max-w-full">
             <Button variant="default">
               <Link to={"/"}>Home</Link>
             </Button>
-            <div className="relative w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+            <div className="relative w-64 px-4">
+              <Search className="absolute left-6 top-1/2 overflow-auto -translate-y-1/2 size-4 text-muted-foreground text-ellipsis" />
               <Input type="search" placeholder="Search..." className="pl-9" />
             </div>
-            <Button variant="ghost">
-              <Link to={"/majors"}>Majors</Link>
-            </Button>
             <Button
               variant="ghost"
               className="hover:cursor-not-allowed text-gray-400"
@@ -37,7 +34,7 @@ const RootLayout = () => {
             </Button>
           </div>
 
-          <div>
+          <div className="flex gap-1">
             <Button onClick={() => setShowSignIn((prev) => !prev)}>
               Sign In
             </Button>
@@ -70,7 +67,9 @@ const RootLayout = () => {
                 Forgot password?
               </button>
             </div>
-            <Button className="w-full">Sign In</Button>
+            <Button className="w-full" onClick={() => setShowSignIn(false)}>
+              Sign In
+            </Button>
             <div className="text-center text-muted-foreground">
               Don't have an account?{" "}
               <button className="text-primary hover:underline">Sign up</button>
@@ -78,7 +77,7 @@ const RootLayout = () => {
           </div>
         </DialogContent>
       </Dialog>
-      <Outlet></Outlet>
+      <Outlet />
     </>
   );
 };

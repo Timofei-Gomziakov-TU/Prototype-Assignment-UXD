@@ -6,17 +6,19 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import {
   ArrowLeft,
-  GraduationCap,
   BookOpen,
   Briefcase,
   Target,
-  Badge,
+  MessageCircleMore,
+  User,
+  Laptop,
 } from "lucide-react";
 
-export const Route = createFileRoute("/majors/$major")({
+export const Route = createFileRoute("/majors/computer-science")({
   component: RouteComponent,
 });
 
@@ -73,7 +75,6 @@ function RouteComponent() {
   const navigate = useNavigate();
   return (
     <div className="max-w-7xl mx-auto px-6 py-8">
-      {/* Back Button */}
       <Button
         variant="ghost"
         className="mb-6"
@@ -83,31 +84,32 @@ function RouteComponent() {
         Back to Majors
       </Button>
 
-      {/* Header Section */}
       <div className="mb-12">
         <div className="flex items-start gap-4 mb-4">
           <div className="p-3 bg-primary/10 rounded-lg">
-            <GraduationCap className="size-10 text-primary" />
+            <Laptop className="size-10 text-primary" />
           </div>
           <div>
-            <h1 className="mb-2">Computer Science</h1>
+            <h1 className="mb-2 font-bold">Computer Science</h1>
             <p className="text-muted-foreground">
               Bachelor of Science • 4 Years • Full-time
             </p>
           </div>
         </div>
         <p className="max-w-4xl">
-          Computer Science is the study of computers and computational systems.
-          Unlike electrical and computer engineers, computer scientists deal
-          mostly with software and software systems; this includes their theory,
-          design, development, and application. Our program prepares students
-          for careers in software development, artificial intelligence, data
-          science, and more, with a strong foundation in both theoretical and
-          practical aspects of computing.
+          The Bachelor of Science in Computer Science provides an in-depth study
+          of the science of computing, including mathematical/theoretical
+          foundations as well as systems and application software development.
+          Students take electives (4-5 courses) in topics such as artificial
+          intelligence, machine learning, robotics, computer vision, graphics,
+          game programming, bioinformatics, databases, big data, mobile and web
+          application development, cloud computing, high performance computing,
+          wireless and sensor networks, network and information security, and
+          digital forensics. The program is for students with an interest in the
+          fundamentals of computing, who want to be able to contribute to
+          innovative research and product development.
         </p>
       </div>
-
-      {/* Overview Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         <Card>
           <CardHeader>
@@ -123,25 +125,17 @@ function RouteComponent() {
             <CardDescription>starting salary for graduates</CardDescription>
           </CardHeader>
         </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Class Size</CardTitle>
-            <div className="mt-2">25 students</div>
-            <CardDescription>average class size</CardDescription>
-          </CardHeader>
-        </Card>
       </div>
 
-      {/* Key Courses */}
       <div className="mb-12">
         <div className="flex items-center gap-2 mb-6">
           <BookOpen className="size-6 text-primary" />
-          <h2>Key Courses</h2>
+          <h2 className="font-bold">Key Courses</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {keyCourses.map((course, index) => (
             <Card key={index}>
-              <CardContent className="pt-6">
+              <CardContent className="">
                 <p>{course}</p>
               </CardContent>
             </Card>
@@ -149,11 +143,10 @@ function RouteComponent() {
         </div>
       </div>
 
-      {/* Career Paths */}
       <div className="mb-12">
         <div className="flex items-center gap-2 mb-6">
           <Briefcase className="size-6 text-primary" />
-          <h2>Career Paths</h2>
+          <h2 className="font-bold">Career Paths</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {careerPaths.map((career, index) => (
@@ -167,40 +160,44 @@ function RouteComponent() {
         </div>
       </div>
 
-      {/* Skills You'll Learn */}
       <div className="mb-12">
         <div className="flex items-center gap-2 mb-6">
           <Target className="size-6 text-primary" />
-          <h2>Skills You'll Learn</h2>
+          <h2 className="font-bold">Skills You'll Learn</h2>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {skills.map((skill, index) => (
-            <Badge key={index} className="px-4 py-2">
-              {skill}
-            </Badge>
-          ))}
-        </div>
+        <p className="">{skills.map((skill) => skill + ", ")}</p>
       </div>
 
-      {/* Call to Action */}
-      <Card className="bg-primary text-primary-foreground">
-        <CardHeader>
-          <CardTitle>Ready to Get Started?</CardTitle>
-          <CardDescription className="text-primary-foreground/80">
-            Join our Computer Science program and start your journey toward a
-            rewarding career in technology
-          </CardDescription>
-          <div className="flex gap-4 pt-4">
-            <Button variant="secondary">Apply Now</Button>
-            <Button
-              variant="outline"
-              className="bg-transparent text-primary-foreground border-primary-foreground/20 hover:bg-primary-foreground/10"
-            >
-              Schedule a Visit
-            </Button>
+      <div>
+        <div className="flex items-center gap-2">
+          <MessageCircleMore />
+          <h1 className="font-bold">Alumni Q&A</h1>
+        </div>
+        <div className="flex flex-col mt-2">
+          <Textarea
+            placeholder="Type your question here..."
+            className="border-2"
+          />
+          <Button className="w-20 ml-auto mt-2">Comment</Button>
+        </div>
+        {/* Comments */}
+        <div className="flex">
+          <User className="mr-2" />
+          <div className="flex flex-col">
+            <div>
+              <h2 className="font-bold">Alumni</h2>
+            </div>
+            <div>
+              <p>If you want to succeed, here's what you need to do...</p>
+            </div>
+            <div>
+              <p className="hover:underline font-semibold text-sm w-fit">
+                Reply
+              </p>
+            </div>
           </div>
-        </CardHeader>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

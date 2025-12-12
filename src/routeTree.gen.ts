@@ -9,75 +9,63 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as MajorsIndexRouteImport } from './routes/majors/index'
-import { Route as MajorsMajorRouteImport } from './routes/majors/$major'
+import { Route as MajorsEnviromentalSciencesRouteImport } from './routes/majors/enviromental-sciences'
+import { Route as MajorsComputerScienceRouteImport } from './routes/majors/computer-science'
 
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MajorsIndexRoute = MajorsIndexRouteImport.update({
-  id: '/majors/',
-  path: '/majors/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MajorsMajorRoute = MajorsMajorRouteImport.update({
-  id: '/majors/$major',
-  path: '/majors/$major',
+const MajorsEnviromentalSciencesRoute =
+  MajorsEnviromentalSciencesRouteImport.update({
+    id: '/majors/enviromental-sciences',
+    path: '/majors/enviromental-sciences',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MajorsComputerScienceRoute = MajorsComputerScienceRouteImport.update({
+  id: '/majors/computer-science',
+  path: '/majors/computer-science',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/majors/$major': typeof MajorsMajorRoute
-  '/majors': typeof MajorsIndexRoute
+  '/majors/computer-science': typeof MajorsComputerScienceRoute
+  '/majors/enviromental-sciences': typeof MajorsEnviromentalSciencesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/majors/$major': typeof MajorsMajorRoute
-  '/majors': typeof MajorsIndexRoute
+  '/majors/computer-science': typeof MajorsComputerScienceRoute
+  '/majors/enviromental-sciences': typeof MajorsEnviromentalSciencesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/majors/$major': typeof MajorsMajorRoute
-  '/majors/': typeof MajorsIndexRoute
+  '/majors/computer-science': typeof MajorsComputerScienceRoute
+  '/majors/enviromental-sciences': typeof MajorsEnviromentalSciencesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/majors/$major' | '/majors'
+  fullPaths: '/' | '/majors/computer-science' | '/majors/enviromental-sciences'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/majors/$major' | '/majors'
-  id: '__root__' | '/' | '/about' | '/majors/$major' | '/majors/'
+  to: '/' | '/majors/computer-science' | '/majors/enviromental-sciences'
+  id:
+    | '__root__'
+    | '/'
+    | '/majors/computer-science'
+    | '/majors/enviromental-sciences'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  MajorsMajorRoute: typeof MajorsMajorRoute
-  MajorsIndexRoute: typeof MajorsIndexRoute
+  MajorsComputerScienceRoute: typeof MajorsComputerScienceRoute
+  MajorsEnviromentalSciencesRoute: typeof MajorsEnviromentalSciencesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -85,18 +73,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/majors/': {
-      id: '/majors/'
-      path: '/majors'
-      fullPath: '/majors'
-      preLoaderRoute: typeof MajorsIndexRouteImport
+    '/majors/enviromental-sciences': {
+      id: '/majors/enviromental-sciences'
+      path: '/majors/enviromental-sciences'
+      fullPath: '/majors/enviromental-sciences'
+      preLoaderRoute: typeof MajorsEnviromentalSciencesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/majors/$major': {
-      id: '/majors/$major'
-      path: '/majors/$major'
-      fullPath: '/majors/$major'
-      preLoaderRoute: typeof MajorsMajorRouteImport
+    '/majors/computer-science': {
+      id: '/majors/computer-science'
+      path: '/majors/computer-science'
+      fullPath: '/majors/computer-science'
+      preLoaderRoute: typeof MajorsComputerScienceRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -104,9 +92,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  MajorsMajorRoute: MajorsMajorRoute,
-  MajorsIndexRoute: MajorsIndexRoute,
+  MajorsComputerScienceRoute: MajorsComputerScienceRoute,
+  MajorsEnviromentalSciencesRoute: MajorsEnviromentalSciencesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
